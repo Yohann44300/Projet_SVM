@@ -1,1 +1,47 @@
-# Projet_SVM
+<center><h1>Classification sur la maintenance prédictive de machines</h1></center>
+
+### Yohann TESSON
+
+&nbsp;
+![](images/maintenance.jpeg)
+
+## I-Introduction :
+
+L'objectif de cette étude est de réaliser différents modèles SVM (Support Vector Machine) et de réseaux de neurones afin de pouvoir prédire des futures pannes de machines. Ceci permettra alors d'anticiper leur maintenance. Pour ce faire nous allons procéder à deux types de classification. Une première classification sera binaire et une deuxième sera multiclasse. Pour réaliser cette analyse nous disposons d'une base de données téléchargée préalablement sur le site kaggle (https://www.kaggle.com/datasets/shivamb/machine-predictive-maintenance-classification). C'est une base de données constituée de 10000 observations pour 10 variables. Les variables fournis sont les suivantes :
+
+  Variables explicatives : 
+  
+  - UID : identifiant allant de 1 à 10000.
+  - Product ID : le numéro de série de la machine.
+  - Type : correspond à la qualité de produit avec L (faible), M (moyenne) et H(élevée).
+  - Air temperature [K] : correspond à la température de l'air en Kelvin.
+  - Process temperature [K] : correspond à la température du processus en Kelvin.
+  - Rotational Speed [rpm] : correspond à la vitesse de rotation claculée en tours par minute à une puissance de 2860 W.
+  - Torque [Nm] : correspond au couple calculé en Newton mètre (Nm).
+  - Tool wear [min] : correspond à l'usure de l'outil en minutes. Les variantes H/M/L ajoutent respectivement 5/3/2 minutes au processus.
+
+  Variables cibles :
+  
+  - Target : Variable cible binaire prenant les valeurs 0 (pas d'échec) et 1 (échec).
+  - Failure Type : Variable cible catégorielle prenant en compte les différents types d'échec.
+
+## II-Partie Exploratoire :
+
+Dans cette partie nous allons explorer la base de données afin de comprendre d'avantage sur les variables ainsi que les relations entre elles. Cette vue d'ensemble nous permettra par la suite de préparer la base de données pour la modélisation.
+
+Pour commencer nous avons tout d'abord vérifier s'il y avait la présence de valeurs manquantes dans notre base de données. Les données fournies par le site de Kaggle sous souvent de bonne qualité, il est rare d'en trouver. Nous n'avons sans surprise aucune valeurs manquantes. 
+
+### Statistiques descriptives des variables quantitatives :
+
+|	    | Air_temperature |	Process_temperature |	Rotational_speed | Torque	| Tool_wear |
+|-----|-----------------|---------------------|------------------|--------|-----------|
+|count|	10000.000000    |	10000.000000        |	10000.000000	   | 10000.000000    | 10000.000000 |
+|mean |	300.004930	    | 310.005560          |	1538.776100	     |39.986910	       | 107.951000 |
+| std |	2.000259	      | 1.483734            |	179.284096	     | 9.968934        |	63.654147 |
+|min  | 295.300000      |	305.700000          |	1168.000000      |	3.800000	     | 0.000000   |
+|25%  |	298.300000      |	308.800000          |	1423.000000      |	33.200000      |	53.000000 |
+|50%  |	300.100000      |	310.100000	        | 1503.000000      |	40.100000	     | 108.000000  |
+|75%  |	301.500000      |	311.100000	        | 1612.000000	     | 46.800000       | 162.000000 |
+|max  |	304.500000      |	313.800000	        | 2886.000000	     | 76.600000       | 253.000000 |
+
+Le tableau des statistiques descriptives nous permet de déceler des différences d'échelle entre les variables. Il sera donc souhaitable de les standardiser, c'est à dire de soustraire les variables par leur moyenne, le tout en les divisant par leur écart-type. Ceci permet de pouvoir comparer les variables entre-elles indépendament de leur unité, tout en réduisant les temps de calcul lors des modélisations.
