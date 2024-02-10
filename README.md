@@ -278,9 +278,28 @@ Pour le modèle par défaut de la classification multiclasse, on a opté pour qu
 
 Nous avons paramétré les epochs à 50 et le batch size à 32. Ceci nous donne un score de précision maximal de 93.45% pour une valeur de loss de 22.86.
 
+###### Graphique 11 : Evolution du score de précision et du loss en fonction des epochs
 
+![](images/epoch_multiclasse.png)
 
+Sur ce graphique on voit que le modèle arrête d'apprendre autour de 40-50 epochs. En effet les courbe d'accuracy et de loss se stabilise à ce niveau-ci.
 
+Le score de l'échantillon test sur les prévisions nous donne un socre de précision de 80.15. Ce qui est bien moins que l'échantillon train. On peut suspecter un surapprentissage des données de l'échantillon train. Il faudrait peut être changer les paramètres lors de la modélisation.
 
+##### Tunage du modèle par défaut :
 
+Mêmes paramètres testés pour l'optimisation du modèle par défaut que le modèle binaire. Cette étape n'a pas pu aboutir pour les même problèmes que le modèle binaire.
+
+## IV-Conclusion
+
+###### Tableau 7 : Récapitulatif des modèles retenus
+
+| Modèle | Train (Précision) | Test (Précision) |
+|--------|-------------------|------------------|
+| SVC binaire | 96.7 | 93.4 |
+| ANN binaire | 91.57| 90   |
+| SVC multiclasse | 95.75 | 90.35 |
+| ANN multiclasse | 93.45 | 80.15 |
+
+Pour les deux types de classifications, les meilleurs modèles sont les SVC avec un score d'accuracy respectif de 93.4% et 90.35% pour les prévisions de l'échantillon test. Pour l'ensemble des modèles, il ne semble pas y avoir d'overfitting. Les modèles sont plutôt généralisable pour prédire les défauts des machines. Cependant bien que l'évènement non-échec soit bien prédits, certaines modalités ne le sont pas. Peut être qu'il y a des éléments à modifier comme le fait de supprimer les variables corrélées entre elles, d'optimiser d'autres paramètres ou choisir une autre plage de valeurs. La méthode de réajustement des classes peut être aussi à modifier.
 
