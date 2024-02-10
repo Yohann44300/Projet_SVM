@@ -241,6 +241,14 @@ Un ANN (Artificial Neural Network), est un modèle computationnel inspiré du fo
 
 Pour la modélisation par défaut nous allons utilisé qu'une seule couche cachée pour 100 neurones. La fonction d'activation sera une fonction ReLu (Rectified Linear Unit). Puisque c'est une classification binaire nous allons utilisé un seul neurone pour l'Output Layer avec comme fonction d'activation une sigmoïde (fonction utilisée pour la régression logistique). Comme choix d'optimiseur, nous utilisons celui d'Adam. L'optimiseur est un composant essentiel dans l'entraînement des réseaux de neurones artificiels (ANN). Il est utilisé pour ajuster les poids du réseau afin de minimiser la fonction de coût lors du processus d'apprentissage. L'objectif de l'optimisation est de trouver les valeurs optimales des poids qui permettent au réseau de fournir des prédictions les plus précises possibles sur les données d'entraînement. En ce qui concerne la fonction de perte nous allons utilisé, puisque c'est une classification binaire, la binary cross entropy.
 
+Pour la modélisation nous paramétrons l'epoch à 50 et le batch size à 32. Une epoch représente une passe complète à travers l'ensemble de données d'entraînement pendant l'entraînement du modèle. L'entraînement d'un modèle se fait par itérations successives à travers l'ensemble de données d'entraînement, où chaque itération est appelée une epoch. Plus le nombre d'epochs est élevé, plus le modèle a d'occasions d'apprendre des motifs complexes dans les données d'entraînement. Cependant, il est important de surveiller les signes de surajustement (overfitting) lorsque le nombre d'epochs devient trop élevé, car le modèle peut commencer à s'ajuster trop précisément aux données d'entraînement et ne pas généraliser correctement sur de nouvelles données.
+
+Le batch size représente le nombre d'échantillons d'entraînement utilisés dans une itération pour mettre à jour les poids du modèle. L'entraînement d'un modèle ne se fait pas sur l'ensemble de données complet à chaque itération, mais plutôt sur des lots (batches) plus petits. Le choix du batch size peut avoir un impact sur la vitesse d'entraînement et la quantité de mémoire requise. Un batch size plus grand peut accélérer l'entraînement car les mises à jour des poids sont effectuées moins fréquemment, mais cela peut nécessiter plus de mémoire. Un batch size plus petit peut nécessiter moins de mémoire mais l'entraînement peut être plus lent. Des valeurs courantes pour le batch size sont 32, 64, 128, etc.
+
+Cette modélisation nous a donné comme valeur d'accuracy maximal de 91.57% pour un loss de 20.63.
+
+
+
 
 
 
