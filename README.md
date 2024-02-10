@@ -210,6 +210,23 @@ Le graphique ci-dessous nous donne la matrice de confusion de l'échantillon tes
 
 ###### Graphihque 8 : Matrice de confusion de l'échantillon test du modèle SVC binaire.
 
+![](images/matrice_svm_binaire.png)
+
+On voit sur cette matrice de confusion que les non-échecs sont bien prédits. Cependant les échecs pourraient être mieux prédits. En effet il y a 48 bonnes prédictions pour 119 faux-positifs et 13 faux-négatifs. Peut-être que cela pourrait être amélioré en changeant de méthode de réajustement d'échantillon, en supprimant les variables corrélés ou en changeant les paramètres à optimiser.
+
+#### Classification multiclasse :
+
+Pour la classification multiclasse, on a le choix entre deux types de classifications. Il y a OVR (one versus rest) et le OVO (one versus one). L'OVO construit un classificateur binaire pour chaque paire possible de classes. Si il y a N classes, OVO contruira (N*(N-1))/2 classificateurs binaires. Chaque classificateur binaire est entraîné sur un sous-ensemble de données composé uniquement des exemples de deux classes concernées. Lors de la prédiction, chaque classificateur donne un vote, et la classe avec le plus grand nombre de votes est choisie comme la classe finale.
+OVR construit un classificateur binaire pour chaque classe, en le comparant à toutes les autres classes regroupées en une seule classe restante. Si il y a N classes, OVR construira N classificateurs binaires.Chaque classificateur binaire est entraîné sur un sous-ensemble de données où les exemples de la classe considérée sont positifs, et tous les autres exemples sont négatifs. Lors de la prédiction, chaque classificateur donne une mesure de confiance pour l'appartenance à sa classe respective, et la classe avec la plus grande mesure est choisie.
+
+##### Modélisation avec paramètre par défaut 
+
+La classification par défaut utilisé est la classification OVR (one versus rest). Celui ci nous donne un score de précision de 93,05%. Ce qui est plutôt bon.
+
+##### Tunage du modèle SVC :
+
+Pour le gridsearch nous allons chercher à optimiser trois paramètres que sont le coefficient de régularisation C, le noyau et le type de classification multiclasse. Ceci nous donne un modèle avec un paramètre C de 100, un noyau RBF et une classification OVO pour un score d'accuracy de 95.75%. Le score est meilleur que le modèle par défaut. Pour l'échantillon test nous avons obtenu un score de 90.35%. Les scores semble assez proches, il n'y a pas de suspicion d'overfitting.
+
 
 
 
