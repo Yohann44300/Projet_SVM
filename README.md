@@ -53,3 +53,14 @@ Au vue de leur moyenne, les variables Torque et Tool_wear disposent d'un écart-
 
 On vérifie ensuite si les différentes variables quantitatives suivent une loi normale. Pour cela nous utilisons le test de normalité de Shapiro-Wilk qui pose comme hypothèse nulle la présence d'une loi normale. Au vue des résultats, seul la variable Torque est normalement distribuée. On peut le confirmer visuellement à l'aide des graphiques ci-dessous :
 
+#### Graphique 1 : Histogrammes des variables quantitatives
+
+![](images/histogrammes.png)
+
+Nous allons ensuite faire une analyse des valeurs atypiques sur ces mêmes variables à l'aide de boxplots. Le graphique ci-dessous, nous montre la présence de plusieurs valeurs atypiques au niveau des variables Rotational_speed et Torque. Pour la première variable les valeurs sont situées uniquement sur la partie supérieure de la boîte à moustache. Pour la seconde, elles sont situées de part et d'autre du boxplot.
+
+#### Graphique 2 : Boxplots des variables quantitatives
+
+
+
+
