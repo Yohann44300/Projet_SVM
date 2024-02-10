@@ -83,7 +83,26 @@ On voit qu'ici, les produits de faible qualité (L) sont représentés à 60% co
 
 ##### Graphique 3 : Répartition des modalités de la varibale Type
 
+![](images/type.png)
 
+#### Variable cible Target :
+
+##### Tableau 3 : Répartition des modalités de la variable Target
+
+| Target | freq |
+|--------|------|	
+| 0 |	9661 |
+| 1 |	339  |
+
+Pour cette variables, on voit que le taux d'échec est représenté à 3% contre 97% de non échec. La répartition est donc déséquilibrée. Il faudra penser rééquilibrer la classe minoritaire (Méthode d'Oversampling, SMOTE,...).
+
+##### Graphique 4 : Répartition des modalités de la variable Target 
+
+![](images/target.png)
+
+#### Variable cible Failure_type :
+
+#####
 
 
 
