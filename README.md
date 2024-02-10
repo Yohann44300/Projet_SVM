@@ -231,7 +231,7 @@ Pour le gridsearch nous allons chercher à optimiser trois paramètres que sont 
 
 ![](images/matrice_svm_multiclasse.png)
 
-La matrice de confusion nous donne un bon nombre de bonnes prédictions pour les non-échecs. Cependant il y a certaines modalités qui sont mal prédites comme les pannes aléatoires (random failures). Le modèle pourrait être améliorer pour les mêmes raisons que le modèle binaire.
+La matrice de confusion nous donne un bon nombre de bonnes prédictions pour les non-échecs. Cependant il y a certaines modalités qui sont mal prédites comme les pannes aléatoires (random failures). Le modèle pourrait être améliorer de la même manière que le modèle binaire.
 
 ### Réseau de neurones
 
