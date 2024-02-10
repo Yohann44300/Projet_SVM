@@ -194,6 +194,23 @@ On voit d'après le tableau que le modèle SVC donne un meilleur score en terme 
 
 ###### Graphique 7 : Evolution des scores de précision des trois modèles SVM
 
+![](images/svm_cv.png)
+
+De plus, la variance du SVC semble plutôt correct ce qui montre une bonne stabilité du modèle.
+
+##### Tunage du modèle SVC
+
+Nous allons maintenant chercher à optimiser les paramètres du modèle SVC pour améliorer le score de précision. Pour cela nous allons faire un gridsearch sur les différents noyaux. Nous choisissons les noyaux linéaire, polynomiale et rbf. Le noyau linéaire est utilisé lorsque les données sont linéairement séparables dans l'espace d'origine. Le noyau polynomial est utile pour les données qui ne sont pas linéairement séparables et peuvent avoir des frontières de décision complexes. Enfin le noyau gaussien (RBF) est utilisé en raison de sa capacité à gérer des frontière de décision complexes. Nous allons également tester le coefficient de régularisation C qui permet de contrôler les pénalités appliquées aux erreurs de classifications. Un C plus petit permet une marge plus grande, même au prix de quelques erreurs de classificiation. Un C plus grand rend le modèle plus sensible aux erreurs d'entraînement, cherchant à les minimiser même au détriment d'une marge plus étroite (risque de surajustement).
+
+Le modèle retenu est un modèle avec un paramètre C égale à 1000 et un noyau RBF. le score d'accuracy est de 96.7%. Le modèle semble avoir bien appris.
+
+Cela nous donne comme précision pour l'échantillon test, un score de 93,4%. C'est un score proche de celui de l'échantillon train. Il ne semble pas y avoir de surapprentissage.
+
+Le graphique ci-dessous nous donne la matrice de confusion de l'échantillon test.
+
+###### Graphihque 8 : Matrice de confusion de l'échantillon test du modèle SVC binaire.
+
+
 
 
 
