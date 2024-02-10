@@ -171,4 +171,35 @@ Pour le cas de la classification, en faisant un réajustement par oversampling d
 
 ### SVM
 
+Un modèle SVM (Support Vector Machine) est un algorithme de machine learning utilisé pour la classification et la régression. Il appartient à la famille des méthodes d'apprentissage supervisé. L'objectif principal d'un SVM est de trouver un hyperplan qui sépare les données d'entraînement en classes distinctes. Un hyperplan est essentiellement un plan qui divise l'espace des carctéristiques de manière à maximiser la marge entre les exemples de différentes classes. Les exemples qui se trouvent le plus près de cet hyperplan sont appelés "vecteurs de support".
+
+#### Classification binaire :
+
+##### Modélisation avec paramètre par défaut :
+
+Nous utilisons ici, trois types de modèles SVM pour la classification. Tout d'abord le modèle linearSVC qui est spécifiquement conçu pour la classification linéaire. Il utilise l'optimisation à base de méthodes de descente de gradient. Il y a ensuite le SVC qui est un modèle SVM standard capable de gérer à la fois des données linéaires et non linéaires. Enfin il y a le SGDClassifier qui est un modèle plus général qui utilise l'optimisation stochastique par descende de gradient. Il peut être plus rapide sur de grands ensemble de données mais il nécessite une mise à l'échelle appropriée des données.
+
+Le tableau ci-dessous nous montre les scores de précisions après cross-validation sur 5 folds des trois modèles différents.
+
+###### Tableau 5 : Evolution des scores de précision des trois modèles SVM 
+
+|   | fold1 | fold2 | fold3 | fold4 | fold5 | modèle |
+|---|-------|-------|-------|-------|-------|--------|
+| 0 |	0.917125 | 0.906118 |	0.921010 | 0.932664 | 0.909003 | SVC |
+| 1 |	0.750081 | 0.753966 |	0.740369 | 0.743606	| 0.738018 | LinearSVC |
+| 2	| 0.737779 | 0.748139 |	0.715118 | 0.762706 |	0.738990 | SGDClassifier |
+
+
+On voit d'après le tableau que le modèle SVC donne un meilleur score en terme d'accuracy. Nous allons donc retenir ce modèle pour l'optimisation des paramètres. Visuellement, cela donne le graphique suivant :
+
+###### Graphique 7 : Evolution des scores de précision des trois modèles SVM
+
+
+
+
+
+
+
+
+
 
