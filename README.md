@@ -114,7 +114,58 @@ Pour cette variables, on voit que le taux d'échec est représenté à 3% contre
 | Tool Wear Failure |	45 |
 
 On voit ici, que les non-échec sont représentés, comme pour la variable Target, à 97% contre 3% pour l'ensemble des types d'erreur.
-Les modalités étant déséquilibrées, il faudra penser 
+Les modalités étant déséquilibrées, il faudra penser à recalibrer les modalités minoritaires.
+
+##### Graphique 5 : Répartition des modalités de la variable Failure_type
+
+![](images/failure_type.png)
+
+On voit qu'il y a 6 types d'erreur qui sont les suivantes :
+
+  - Défaut de dissipation de la chaleur
+  - Pas d'échec
+  - Défaillance due à la surcharge
+  - Panne d'électricité
+  - Défauts aléatoires
+  - Défaut d'usure de l'outil
+
+### Analyse des corrélations :
+
+L'analyse des corrélations des variables quantitatives permet de déterminer la force des relations linéaires entre les variables. Elle permet également de faire une sélection de variables. Si deux variables sont corrélées, elles captent la même information. Il est donc préférable d'utiliser l'une d'entre elles afin de ne pas fausser la modélisation.
+
+#### Graphique 6 : Matrice des corrélations des variables quantitatives
+
+![](images/correlation.png)
+
+Sur ce graphique, on peut voir qu'il y a deux relations de corrélation. Une positive entre Air_temperature et Process_temperature à 0.9 et une négative entre Rotational_speed et Torque à -0.9. Dans la logique, il faudrait supprimer deux variables pour ne pas avoir un surplus d'informations, mais cela ne nous laisserait que 3 variables explicatives. Nous allons, dans un premier temps, continuer l'analyse avec les 5 variables et voir pour les supprimer dans un second temps.
+
+Pour vérifier les corrélations entre les variables qualitatives, on réalise un test de chi-deux sous hypothèse nulle d'indépendance des variables. On a effectué ce test entre les variables cibles et la variable Type. On a trouver pour les deux relations, une relation de dépendance. Ceci confirme donc l'importance de la variable Type pour expliquer les deux variables cibles.
+
+### Préparation de la base de données pour la modélisation :
+
+#### Standardisation de la base de données :
+
+Comme certains algorithmes de machine learning sont sensibles à l'échelle des variables, il est donc primordial de standardiser les variables quantitatives continues de la base de données. Ceci permet donc une meilleure stabilisation des modèles en réduisant la sensibilité aux grandes variations d'échelle entre les variables. Il donne non seulement des modèles plus robuste mais améliore aussi les temps de calcul.
+
+Nous avons créé deux bases de données. Une base pour la classification binaire et une base pour la classification multiclasse.
+
+#### Encodage des variables qualitatives :
+
+On encode avec des valeurs numériques les modalités des variables cibles et de la variable Type afin de pouvoir réaliser la modélisation.
+
+#### Division de la base de données en sous-échantillon :
+
+On divise la base de données en deux échantillons. Un échantillon train qui permettra aux algorithmes d'apprendre sur ces données et un échantillon test pour calculer la performance de prédiction. Pour faire ceci, nous avons utilisé la fonction train_test_split du package sklearn.model_selection. Nous avons paramétré la fonction pour qu'il y ait 80% des observations de la base données dans l'échantillon train et 20% dans l'échantillon test.
+
+#### Réajustement des échantillons train par Oversampling :
+
+Comme nous observons un déséquilibre important entre les modalités des deux variables cibles, nous allons réajuster les classes minoritaires afin de les équilibrer à la classe la plus importante. Nous utilisons pour ceci la méthode oversampling. Ceci permettra aux algorithmes de machine learning d'apprendre plus facilement sur les données des classes minoritaires afin de faire de meilleures prédictions. 
+L'oversampling consiste à augmenter artificiellement le nombre d'instances de la classe minoritaire pour équilibrer davantage les classes.
+
+#### Réajustement de l'échantillon train pour la cas de la classification multiclasse :
+
+Pour le cas de la classification, en faisant un réajustement par oversampling de l'échantillon train, nous avons augmenté le nombre d'observations de 8000 à 46301. Ceci engendrera des temps de calcul plus long. Pour limiter ceci nous allons réduire l'échantillon train à 8000 observations tout en maintenant l'équilibre des modalités de la variable cible. Pour ce faire nous utilisons l'option stratify de la fonction train_test_split.
+
 
 
 
