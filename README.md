@@ -102,7 +102,19 @@ Pour cette variables, on voit que le taux d'échec est représenté à 3% contre
 
 #### Variable cible Failure_type :
 
-#####
+##### Tableau 4 : Répartition des modalités de la variables Failure_type
+
+| Failure_Type | freq |
+|--------------|------|	
+| Heat Dissipation Failure |	112 |
+| No Failure | 9652 |
+| Overstrain Failure | 78 |
+| Power Failure |	95 |
+| Random Failures |	18 |
+| Tool Wear Failure |	45 |
+
+On voit ici, que les non-échec sont représentés, comme pour la variable Target, à 97% contre 3% pour l'ensemble des types d'erreur.
+Les modalités étant déséquilibrées, il faudra penser 
 
 
 
