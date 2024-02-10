@@ -61,6 +61,29 @@ Nous allons ensuite faire une analyse des valeurs atypiques sur ces mêmes varia
 
 #### Graphique 2 : Boxplots des variables quantitatives
 
+![](images/boxplot.png)
+
+Au total, nous avons décelé 459 observations atypiques. Nous allons les corriger en les remplaçant par la médiane des variables respectives.
+
+### Statistiques descriptives des variables qualitatives :
+
+Les tableaux et les graphiques ci-dessous, nous montrent la répartition des modalités de chaque variable qualitative.
+
+#### Variable explicative Type :
+
+##### Tableau 2 : Répartition des modalités de la variable Type
+
+| Type | freq |
+|------|------|
+| H	 | 1003 |
+| L  | 6000 |
+| M  | 2997 |
+
+On voit qu'ici, les produits de faible qualité (L) sont représentés à 60% contre 10% pour les produits de haute qualité (H) et 30% pour les produits de moyenne qualité (M).
+
+##### Graphique 3 : Répartition des modalités de la varibale Type
+
+
 
 
 
