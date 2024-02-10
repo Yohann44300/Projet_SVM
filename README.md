@@ -167,5 +167,8 @@ L'oversampling consiste à augmenter artificiellement le nombre d'instances de l
 Pour le cas de la classification, en faisant un réajustement par oversampling de l'échantillon train, nous avons augmenté le nombre d'observations de 8000 à 46301. Ceci engendrera des temps de calcul plus long. Pour limiter ceci nous allons réduire l'échantillon train à 8000 observations tout en maintenant l'équilibre des modalités de la variable cible. Pour ce faire nous utilisons l'option stratify de la fonction train_test_split.
 
 
+## III-Modélisations
+
+### SVM
 
 
