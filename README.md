@@ -237,7 +237,9 @@ La matrice de confusion nous donne un bon nombre de bonnes prédictions pour les
 
 Un ANN (Artificial Neural Network), est un modèle computationnel inspiré du fonctionnement du cerveau biologique. Il fait partie de la famille des modèles de Deep Learning. Un ANN est composé de plusieurs unités appelées neurones, organisées en couches. Les couches sont généralement réparties en trois types. Il y a tout d'abord la couche d'entrée (Input Layer). Cette couche reçoit les données en entrée du modèle. Chaque neurone dans cette couche représente une caractéristique ou une variable d'entrée. Il y a ensuite dans un second temps les couches cachées (Hidden Layers). Ces couches effectuent des transformations non linéaires des données d'entrée. Les réseaux de neurones peuvent avoir plusieurs couches cachées, et c'est la profondeur de ces couches qui caractérise le concept de "deep learning". Chaque neurone dans ces couches applique une transformation pondérée aux données d'entrée. Enfin il y a la couche de sortie (Output Layer). Cette couche produit les résultats de la prédiction ou de la classification. Le nombre de neurones dans cette couche dépend du type de tâche (classification, régression, etc.). Chaque neurone représente une classe ou une valeur de sortie. Les connexions entre les neurones sont associées à des poids qui sont ajustés pendant l'apprentissage du réseau. L'apprentissage est souvent réalisé par l'algorithme de rétropropagation (backpropagation), qui minimise une fonction de coût en ajustant les poids du réseau en fonction des erreurs de prédiction.
 
-#### Modélisation par défaut
+#### Classification binaire
+
+##### Modélisation par défaut
 
 Pour la modélisation par défaut nous allons utilisé qu'une seule couche cachée pour 100 neurones. La fonction d'activation sera une fonction ReLu (Rectified Linear Unit). Puisque c'est une classification binaire nous allons utilisé un seul neurone pour l'Output Layer avec comme fonction d'activation une sigmoïde (fonction utilisée pour la régression logistique). Comme choix d'optimiseur, nous utilisons celui d'Adam. L'optimiseur est un composant essentiel dans l'entraînement des réseaux de neurones artificiels (ANN). Il est utilisé pour ajuster les poids du réseau afin de minimiser la fonction de coût lors du processus d'apprentissage. L'objectif de l'optimisation est de trouver les valeurs optimales des poids qui permettent au réseau de fournir des prédictions les plus précises possibles sur les données d'entraînement. En ce qui concerne la fonction de perte nous allons utilisé, puisque c'est une classification binaire, la binary cross entropy.
 
@@ -247,7 +249,34 @@ Le batch size représente le nombre d'échantillons d'entraînement utilisés da
 
 Cette modélisation nous a donné comme valeur d'accuracy maximal de 91.57% pour un loss de 20.63.
 
+###### Graphique 10 : Evolution de l'accuracy et du loss en fonction des epochs
 
+![](images/epoch_binaire.png)
+
+Sur ce graphique on voit que la courbe de l'accuracy augmente avant de se stabiliser. De même pour la fonction loss qui diminue avant de se stabiliser. On peut supposer que le modèle à fini d'apprendre au bout de 20-30 epochs. Un accuracy élevé et une fonction loss faible est un bon signe d'un modèle performant.
+
+Le score de précision pour l'échantillon test est de 90%. Ce score est proche de l'échantillon train. Il n'y a pas de suspicion de surapprentissage.
+
+###### Tableau 6 : matrice de confusion de l'échantillon test de l'ANN binaire
+
+|   | 0 | 1 |
+|---|------|-----|
+| 0 | 1759 | 180 |
+| 1 |  13  | 48  |
+
+On peut observer dans cet matrice de confusion que les non-échec sont bien prédits. Les échecs pourraient pourtant être amélioré. Il n'y a que 48 valeurs bien prédites pour 180 faux négatifs et 13 faux positifs.
+
+##### Tunage du modèle par défaut :
+
+Dans cette partie, on a essayé d'optimiser le modèle par défaut avec trois paramètres que sont le nombre de couche cachées, le nombre de neurones et l'optimiseur. Cependant, le gridsearch n'a pas pu fonctionner car les versions des packages keras et scikit-learn sont incompatibles. Il ne reconnaît pas les fonctions de perte.
+
+#### Classification multiclasse :
+
+##### Modélisation par défaut :
+
+Pour le modèle par défaut de la classification multiclasse, on a opté pour qu'une seule couche couchée avec 100 neurones pour une fonction d'activation ReLu. On a paramétré la couche de sortie à 6 neurones car il y a 6 modalités. La fonction d'activation pour une classification multiclasse est la fonction softmax. l'optimiseur est celui d'Adam et la fonction loss est le sparse_categorical_crossentropy. 
+
+Nous avons paramétré les epochs à 50 et le batch size à 32. Ceci nous donne un score de précision maximal de 93.45% pour une valeur de loss de 22.86.
 
 
 
