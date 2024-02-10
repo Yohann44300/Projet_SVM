@@ -227,8 +227,13 @@ La classification par défaut utilisé est la classification OVR (one versus res
 
 Pour le gridsearch nous allons chercher à optimiser trois paramètres que sont le coefficient de régularisation C, le noyau et le type de classification multiclasse. Ceci nous donne un modèle avec un paramètre C de 100, un noyau RBF et une classification OVO pour un score d'accuracy de 95.75%. Le score est meilleur que le modèle par défaut. Pour l'échantillon test nous avons obtenu un score de 90.35%. Les scores semble assez proches, il n'y a pas de suspicion d'overfitting.
 
+###### Graphique 9 : Matrice de confusion de l'échantillon test du modèle SVC multiclasse
 
+![](images/matrice_svm_multiclasse.png)
 
+La matrice de confusion nous donne un bon nombre de bonnes prédictions pour les non-échecs. Cependant il y a certaines modalités qui sont mal prédites comme les pannes aléatoires (random failures). Le modèle pourrait être améliorer pour les mêmes raisons que le modèle binaire.
+
+### Réseau de neurones
 
 
 
