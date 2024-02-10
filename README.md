@@ -7,7 +7,7 @@
 
 ## I-Introduction :
 
-L'objectif de cette étude est de réaliser différents modèles SVM (Support Vector Machine) et de réseaux de neurones afin de pouvoir prédire des futures pannes de machines. Ceci permettra alors d'anticiper leur maintenance. Pour ce faire nous allons procéder à deux types de classification. Une première classification sera binaire et une deuxième sera multiclasse. Pour réaliser cette analyse nous disposons d'une base de données téléchargée préalablement sur le site kaggle (https://www.kaggle.com/datasets/shivamb/machine-predictive-maintenance-classification). C'est une base de données constituée de 10000 observations pour 10 variables. Les variables fournis sont les suivantes :
+L'objectif de cette étude est de réaliser différents modèles SVM (Support Vector Machine) et de réseaux de neurones afin de pouvoir prédire des futures pannes de machines. Ceci permettra d'anticiper leur maintenance. Pour ce faire nous allons procéder à deux types de classification. Une première classification sera binaire (échec ou non de la machine) et une deuxième sera multiclasse (type de panne). Pour réaliser cette analyse nous disposons d'une base de données téléchargée préalablement sur le site kaggle (https://www.kaggle.com/datasets/shivamb/machine-predictive-maintenance-classification). C'est une base de données constituée de 10000 observations pour 10 variables. Les variables fournis sont les suivantes :
 
   Variables explicatives : 
   
@@ -16,7 +16,7 @@ L'objectif de cette étude est de réaliser différents modèles SVM (Support Ve
   - Type : correspond à la qualité de produit avec L (faible), M (moyenne) et H(élevée).
   - Air temperature [K] : correspond à la température de l'air en Kelvin.
   - Process temperature [K] : correspond à la température du processus en Kelvin.
-  - Rotational Speed [rpm] : correspond à la vitesse de rotation claculée en tours par minute à une puissance de 2860 W.
+  - Rotational Speed [rpm] : correspond à la vitesse de rotation calculée en tours par minute à une puissance de 2860 W.
   - Torque [Nm] : correspond au couple calculé en Newton mètre (Nm).
   - Tool wear [min] : correspond à l'usure de l'outil en minutes. Les variantes H/M/L ajoutent respectivement 5/3/2 minutes au processus.
 
@@ -25,13 +25,17 @@ L'objectif de cette étude est de réaliser différents modèles SVM (Support Ve
   - Target : Variable cible binaire prenant les valeurs 0 (pas d'échec) et 1 (échec).
   - Failure Type : Variable cible catégorielle prenant en compte les différents types d'échec.
 
-## II-Partie Exploratoire :
+## II-Analyse Exploratoire :
 
 Dans cette partie nous allons explorer la base de données afin de comprendre d'avantage sur les variables ainsi que les relations entre elles. Cette vue d'ensemble nous permettra par la suite de préparer la base de données pour la modélisation.
 
-Pour commencer nous avons tout d'abord vérifier s'il y avait la présence de valeurs manquantes dans notre base de données. Les données fournies par le site de Kaggle sous souvent de bonne qualité, il est rare d'en trouver. Nous n'avons sans surprise aucune valeurs manquantes. 
+### Valeurs manquantes :
+
+Pour commencer nous avons tout d'abord vérifier s'il y avait la présence de valeurs manquantes dans notre base de données. Le fait d'en avoir pourrait compromettre la modélisation. Les données fournies par le site de Kaggle sont souvent de bonne qualité, il est rare d'en trouver. Nous n'avons sans surprise aucune valeurs manquantes. 
 
 ### Statistiques descriptives des variables quantitatives :
+
+#### Tableau 1 : Statistiques descriptives des variables quantitatives
 
 |	    | Air_temperature |	Process_temperature |	Rotational_speed | Torque	| Tool_wear |
 |-----|-----------------|---------------------|------------------|--------|-----------|
@@ -44,4 +48,8 @@ Pour commencer nous avons tout d'abord vérifier s'il y avait la présence de va
 |75%  |	301.500000      |	311.100000	        | 1612.000000	     | 46.800000       | 162.000000 |
 |max  |	304.500000      |	313.800000	        | 2886.000000	     | 76.600000       | 253.000000 |
 
-Le tableau des statistiques descriptives nous permet de déceler des différences d'échelle entre les variables. Il sera donc souhaitable de les standardiser, c'est à dire de soustraire les variables par leur moyenne, le tout en les divisant par leur écart-type. Ceci permet de pouvoir comparer les variables entre-elles indépendament de leur unité, tout en réduisant les temps de calcul lors des modélisations.
+Le tableau des statistiques descriptives nous permet de déceler des différences d'échelle entre les variables. Il sera donc souhaitable de les standardiser, c'est à dire de soustraire les variables par leur moyenne, le tout en les divisant par leur écart-type. Ceci permet de pouvoir comparer les variables entre-elles indépendament de leur unité, tout en réduisant les temps de calcul lors des modélisations. 
+Au vue de leur moyenne, les variables Torque et Tool_wear disposent d'un écart-type plus important comparées aux variables Ait_temperature et Process_temperature.
+
+On vérifie ensuite si les différentes variables quantitatives suivent une loi normale. Pour cela nous utilisons le test de normalité de Shapiro-Wilk qui pose comme hypothèse nulle la présence d'une loi normale. Au vue des résultats, seul la variable Torque est normalement distribuée. On peut le confirmer visuellement à l'aide des graphiques ci-dessous :
+
